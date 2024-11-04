@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { loadStripe } from '@stripe/stripe-js';
-import Image from 'next/image';
-import { Session } from 'next-auth';
-import { signOut } from 'next-auth/react';
+import { useState } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+import Image from "next/image";
+import { Session } from "next-auth";
+import { signOut } from "next-auth/react";
 
-import { Icons } from '@/components/icons';
-import { Button } from '@/components/ui/button';
+import { Icons } from "@/components/icons";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,9 +15,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { env } from '@/env.mjs';
-import * as m from '@/paraglide/messages';
+} from "@/components/ui/dropdown-menu";
+import { env } from "@/env.mjs";
+import * as m from "@/paraglide/messages";
 
 export const UserDropdown = ({ session: { user } }: { session: Session }) => {
   const [isPending, setIsPending] = useState(false);
@@ -25,7 +25,7 @@ export const UserDropdown = ({ session: { user } }: { session: Session }) => {
   const handleCreateCheckoutSession = async () => {
     setIsPending(true);
 
-    const res = await fetch('/api/stripe/checkout-session');
+    const res = await fetch("/api/stripe/checkout-session");
     const checkoutSession = await res.json().then(({ session }) => session);
     const stripe = await loadStripe(env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
     await stripe!.redirectToCheckout({
@@ -59,8 +59,7 @@ export const UserDropdown = ({ session: { user } }: { session: Session }) => {
           <Button
             onClick={handleCreateCheckoutSession}
             disabled={user?.isActive || isPending}
-            className="w-64"
-          >
+            className="w-64">
             {user?.isActive ? (
               m.you_are_a_pro()
             ) : (
@@ -68,7 +67,7 @@ export const UserDropdown = ({ session: { user } }: { session: Session }) => {
                 {isPending && (
                   <Icons.loader className="mr-2 size-4 animate-spin" />
                 )}
-                {m.upgrade_to_pro_cta()}
+                Take my money!
               </>
             )}
           </Button>
