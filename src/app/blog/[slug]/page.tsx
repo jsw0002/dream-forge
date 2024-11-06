@@ -3,6 +3,7 @@
 import ReactMarkdown from "react-markdown";
 import { formatDate } from "../../../lib/formatDate";
 import { getBlog } from "../actions";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import { useParams } from "next/navigation";
@@ -45,6 +46,13 @@ export default function Blog() {
         className="text-sm text-muted-foreground hover:underline mb-4 inline-block">
         ← Back to blog list
       </Link>
+      <Image
+        src={blog.data.image}
+        alt={blog.data.title || "Blog post image"}
+        width={1200}
+        height={630}
+        className="w-full max-h-[500px] object-cover mb-4"
+      />
       <h1>{blog.data.title}</h1>
       <p className="text-sm text-muted-foreground mb-4">
         {formatDate(blog.data.date)}

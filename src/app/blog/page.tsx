@@ -5,8 +5,10 @@ import {
   CardTitle,
   CardDescription,
   CardHeader,
+  CardContent,
 } from "@/components/ui/card";
 import { getBlogs } from "./actions";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -35,9 +37,17 @@ export default function Blog() {
             className="hover:bg-muted transition-colors duration-200 cursor-pointer"
             onClick={() => router.push(`/blog/${blog.slug}`)}>
             <CardHeader>
-              <CardTitle className="mb-3">{blog.data.title}</CardTitle>
-              <CardDescription>{blog.data.description}</CardDescription>
+              <Image
+                src={blog.data.image}
+                alt={blog.data.title || "Blog post image"}
+                width={500}
+                height={300}
+              />
+              <CardTitle className="py-3">{blog.data.title}</CardTitle>
             </CardHeader>
+            <CardContent>
+              <CardDescription>{blog.data.description}</CardDescription>
+            </CardContent>
           </Card>
         ))}
       </div>

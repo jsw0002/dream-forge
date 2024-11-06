@@ -1,6 +1,7 @@
 ---
 title: "Exploring the World of Markdown"
 description: "A sample blog post to showcase various markdown elements for styling purposes."
+image: "https://ik.imagekit.io/jsw0002/stories/markdown-blog_mK2mo19hS_.webp"
 date: "2024-11-05"
 ---
 
