@@ -6,6 +6,28 @@ import matter from "gray-matter";
 
 const blogsDirectory = path.join(process.cwd(), "src/markdown/blogs");
 
+export type BlogData = {
+  title: string;
+  description: string;
+  date: string;
+  author: string;
+  tags: string[];
+  categories: string[];
+  series: string;
+  image: string;
+  draft: boolean;
+  featured: boolean;
+  readingTime: number;
+  metaTitle: string;
+  metaDescription: string;
+};
+
+export type Blog = {
+  slug: string;
+  data: BlogData;
+  content: string;
+};
+
 export async function getBlogs() {
   const fileNames = fs.readdirSync(blogsDirectory);
   const allBlogs = fileNames.map((fileName) => {

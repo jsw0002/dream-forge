@@ -1,9 +1,20 @@
 ---
 title: "Exploring the World of Markdown"
 description: "A sample blog post to showcase various markdown elements for styling purposes."
-image: "https://ik.imagekit.io/jsw0002/stories/markdown-blog_mK2mo19hS_.webp"
 date: "2024-11-05"
+author: "Blaze Brightly"
+tags: ["example", "sample", "test"]
+categories: ["advice", "profits"]
+series: "The Beginning"
+image: "https://ik.imagekit.io/jsw0002/stories/markdown-blog_mK2mo19hS_.webp"
+draft: false
+featured: true
+readingTime: 7
+metaTitle: "Mastering Markdown on a Monday"
+metaDescription: "A template to help me remember what is what"
 ---
+
+# Exploring the World of Markdown
 
 Welcome to this **sample blog post**! Markdown is a fantastic tool that allows you to write formatted text easily and simply. In this post, we’ll go through various markdown elements to help you visualize how they appear on your blog.
 
