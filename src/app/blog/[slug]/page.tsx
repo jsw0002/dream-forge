@@ -1,5 +1,5 @@
+import BlogContent from "@/components/blog/blogContent";
 import { getBlog } from "../actions";
-import BlogContent from "@/components/blogContent";
 
 export async function generateMetadata({
   params,

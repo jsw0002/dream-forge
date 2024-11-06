@@ -1,22 +1,30 @@
 "use client";
 
-import {
-  Card,
-  CardTitle,
-  CardDescription,
-  CardHeader,
-  CardContent,
-} from "@/components/ui/card";
+import BlogCard from "@/components/blog/BlogCard";
 import { getBlogs } from "./actions";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-type Blog = Awaited<ReturnType<typeof getBlogs>>[number];
+export type BlogList = Awaited<ReturnType<typeof getBlogs>>[number];
+
+function groupBlogsByCategory(blogs: BlogList[]) {
+  return blogs.reduce(
+    (acc, blog) => {
+      blog.data.categories.forEach((category: string) => {
+        if (!acc[category]) {
+          acc[category] = [];
+        }
+        acc[category].push(blog);
+      });
+      return acc;
+    },
+    {} as Record<string, BlogList[]>
+  );
+}
 
 export default function Blog() {
   const router = useRouter();
-  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [blogs, setBlogs] = useState<BlogList[]>([]);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -27,30 +35,40 @@ export default function Blog() {
     fetchBlogs();
   }, []);
 
+  const featuredBlogs = blogs.filter((blog) => blog.data.featured);
+  const groupedBlogs = groupBlogsByCategory(blogs);
+
   return (
-    <div className="mt-10">
-      <h1>My Blogs</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {blogs.map((blog) => (
-          <Card
-            key={blog.slug}
-            className="hover:bg-muted transition-colors duration-200 cursor-pointer"
-            onClick={() => router.push(`/blog/${blog.slug}`)}>
-            <CardHeader>
-              <Image
-                src={blog.data.image}
-                alt={blog.data.title || "Blog post image"}
-                width={500}
-                height={300}
+    <div className="mt-10 space-y-12">
+      {featuredBlogs.length > 0 && (
+        <section>
+          <h2 className="text-2xl font-bold mb-4">Featured Posts</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {featuredBlogs.map((blog) => (
+              <BlogCard
+                key={blog.slug}
+                blog={blog}
+                onClick={() => router.push(`/blog/${blog.slug}`)}
               />
-              <CardTitle className="py-3">{blog.data.title}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>{blog.data.description}</CardDescription>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {Object.entries(groupedBlogs).map(([category, categoryBlogs]) => (
+        <section key={category}>
+          <h2 className="text-2xl font-bold mb-4 capitalize">{category}</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {categoryBlogs.map((blog) => (
+              <BlogCard
+                key={blog.slug}
+                blog={blog}
+                onClick={() => router.push(`/blog/${blog.slug}`)}
+              />
+            ))}
+          </div>
+        </section>
+      ))}
     </div>
   );
 }

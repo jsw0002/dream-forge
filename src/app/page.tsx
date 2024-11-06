@@ -1,9 +1,7 @@
-import BusinessIdeaCard from "@/components/business-idea-card";
-import BlogCard from "@/components/blog-card";
-import { Icons } from "@/components/icons";
-import { Button } from "@/components/ui/button";
-import * as m from "@/paraglide/messages";
-import ThreeDPrintingCard from "@/components/three-d-printing-card";
+import BusinessIdeaSection from "@/components/business-plan-section";
+import BlogSection from "@/components/blog-section";
+import CryptoSection from "@/components/crypto-section";
+import ThreeDPrintingSection from "@/components/three-d-printing-section";
 
 const Home = () => {
   return (
@@ -15,10 +13,11 @@ const Home = () => {
         This is a work in progress but currently there are several projects to
         check out.
       </p>
-      <div className="mt-1 flex flex-col gap-4 md:flex-row">
-        <BusinessIdeaCard />
-        <BlogCard />
-        <ThreeDPrintingCard />
+      <div className="mt-1 grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <BusinessIdeaSection />
+        <BlogSection />
+        <ThreeDPrintingSection />
+        <CryptoSection />
       </div>
     </section>
   );

@@ -8,7 +8,7 @@ import {
   CardFooter,
 } from "./ui/card";
 
-const ThreeDPrintingCard = () => {
+const ThreeDPrintingSection = () => {
   return (
     <Card>
       <CardHeader>
@@ -31,4 +31,4 @@ const ThreeDPrintingCard = () => {
   );
 };
 
-export default ThreeDPrintingCard;
+export default ThreeDPrintingSection;
