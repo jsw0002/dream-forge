@@ -1,18 +1,18 @@
-import '@/styles/globals.css';
+import "@/styles/globals.css";
 
-import { PropsWithChildren } from 'react';
-import { LanguageProvider } from '@inlang/paraglide-next';
-import type { Metadata } from 'next';
+import { PropsWithChildren } from "react";
+import { LanguageProvider } from "@inlang/paraglide-next";
+import type { Metadata } from "next";
 
-import { Footer } from '@/components/footer';
-import { Navbar } from '@/components/navbar/navbar';
-import { ThemeProvider } from '@/components/theme-provider';
-import { ThemeSwitcher } from '@/components/theme-switcher';
-import { Toaster } from '@/components/ui/toaster';
-import { siteConfig } from '@/lib/constant';
-import { fonts } from '@/lib/fonts';
-import { cn } from '@/lib/utils';
-import { languageTag } from '@/paraglide/runtime.js';
+import { Footer } from "@/components/footer";
+import { Navbar } from "@/components/navbar/navbar";
+import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeSwitcher } from "@/components/theme-switcher";
+import { Toaster } from "@/components/ui/toaster";
+import { siteConfig } from "@/lib/constant";
+import { fonts } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
+import { languageTag } from "@/paraglide/runtime.js";
 
 export const generateMetadata = (): Metadata => ({
   metadataBase: new URL(siteConfig.url()),
@@ -24,9 +24,9 @@ export const generateMetadata = (): Metadata => ({
   keywords: siteConfig.keywords(),
   robots: { index: true, follow: true },
   icons: {
-    icon: '/favicon/favicon.ico',
-    shortcut: '/favicon/favicon-16x16.png',
-    apple: '/favicon/apple-touch-icon.png',
+    icon: "/favicon/favicon.ico",
+    shortcut: "/favicon/favicon-16x16.png",
+    apple: "/favicon/apple-touch-icon.png",
   },
   verification: {
     google: siteConfig.googleSiteVerificationId(),
@@ -36,15 +36,15 @@ export const generateMetadata = (): Metadata => ({
     title: siteConfig.title(),
     description: siteConfig.description(),
     siteName: siteConfig.title(),
-    images: '/opengraph-image.png',
-    type: 'website',
+    images: "/opengraph-image.png",
+    type: "website",
     locale: languageTag(),
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title: siteConfig.title(),
     description: siteConfig.description(),
-    images: '/opengraph-image.png',
+    images: "/opengraph-image.png",
   },
 });
 
@@ -52,12 +52,13 @@ const RootLayout = ({ children }: PropsWithChildren) => {
   return (
     <LanguageProvider>
       <html lang={languageTag()} suppressHydrationWarning>
-        <body className={cn('min-h-screen font-sans', fonts)}>
+        <body className={cn("min-h-screen font-sans", fonts)}>
           <ThemeProvider attribute="class">
             <Navbar />
-            {children}
-            <ThemeSwitcher className="absolute bottom-5 right-5 z-10" />
-            <Footer />
+            <div className="flex flex-col flex-grow min-h-[calc(100vh-4rem)]">
+              <main className="container flex-grow">{children}</main>
+              <Footer />
+            </div>
             <Toaster />
           </ThemeProvider>
         </body>
