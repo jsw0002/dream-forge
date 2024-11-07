@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { getBusinessPlan } from "@/app/business-plan/actions";
-import BackToBusinessPlan from "./BackToBusinessPlan";
+import BackToButton from "@/components/ui/back-to-button";
 import ReactMarkdown from "react-markdown";
 import BusinessPlanHeader from "./BusinessPlanHeader";
 
@@ -29,7 +29,7 @@ const BusinessPlanContent = ({
 
   return (
     <div className="mt-10" ref={contentRef}>
-      <BackToBusinessPlan />
+      <BackToButton href="/business-plan" label="business plan list" />
       <BusinessPlanHeader data={content.data} />
       <ReactMarkdown
         components={{
@@ -42,7 +42,7 @@ const BusinessPlanContent = ({
       </ReactMarkdown>
       {showBottomLink && (
         <div className="mt-8">
-          <BackToBusinessPlan />
+          <BackToButton href="/business-plan" label="business plan list" />
         </div>
       )}
     </div>

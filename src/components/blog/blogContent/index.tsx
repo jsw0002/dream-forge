@@ -1,7 +1,7 @@
 "use client";
 
 import BlogDetails from "./BlogDetails";
-import BackToBlog from "./BackToBlog";
+import BackToButton from "@/components/ui/back-to-button";
 import { BlogData, getBlog } from "@/app/blog/actions";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
@@ -31,7 +31,7 @@ export default function BlogContent({
 
   return (
     <div className="mt-10" ref={contentRef}>
-      <BackToBlog />
+      <BackToButton href="/blog" label="blog list" />
       <Image
         src={content.data.image}
         alt={content.data.title || "Blog post image"}
@@ -51,7 +51,7 @@ export default function BlogContent({
       </ReactMarkdown>
       {showBottomLink && (
         <div className="mt-8">
-          <BackToBlog />
+          <BackToButton href="/blog" label="blog list" />
         </div>
       )}
     </div>

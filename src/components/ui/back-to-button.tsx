@@ -1,13 +1,13 @@
 import Link from "next/link";
 
-const BackToBlog = () => {
+const BackToButton = ({ href, label }: { href: string; label: string }) => {
   return (
     <Link
-      href="/blog"
+      href={href}
       className="text-sm text-muted-foreground hover:underline mb-4 inline-block">
-      ← Back to blog list
+      ← Back to {label}
     </Link>
   );
 };
 
-export default BackToBlog;
+export default BackToButton;
