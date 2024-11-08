@@ -1,11 +1,11 @@
 import { getBlog } from "../actions";
 import BlogContent from "@/components/blogContent";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}) {
+type PageProps = {
+  params: Promise<{ slug: string }>;
+};
+
+export async function generateMetadata({ params }: PageProps) {
   const resolvedParams = await params;
   const blog = await getBlog(resolvedParams.slug);
   return {
