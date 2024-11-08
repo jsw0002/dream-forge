@@ -1,4 +1,4 @@
-import { BusinessPlanList } from "@/app/business-plan/page";
+import { BusinessPlanList } from "./BusinessPlanList";
 import {
   Card,
   CardDescription,
