@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps) {
   };
 }
 
-export default async function Blog({ params }: { params: { slug: string } }) {
+export default async function Blog({ params }: PageProps) {
   const resolvedParams = await params;
   const blog = await getBlog(resolvedParams.slug);
 
