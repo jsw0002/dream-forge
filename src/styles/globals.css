@@ -85,7 +85,7 @@
     @apply text-base font-medium mb-2;
   }
   a {
-    @apply text-primary hover:underline;
+    @apply text-primary;
   }
   ul {
     @apply list-disc list-inside;

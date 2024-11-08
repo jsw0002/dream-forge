@@ -54,7 +54,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
         <body className={cn("min-h-screen font-sans", fonts)}>
           <ThemeProvider attribute="class">
             <Navbar />
-            <div className="flex flex-col flex-grow min-h-[calc(100vh-4rem)]">
+            <div className="flex flex-col flex-grow min-h-[calc(100vh-4rem)] pt-20">
               <main className="container flex-grow">{children}</main>
               <Footer />
             </div>
