@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Card,
   CardContent,
@@ -5,10 +7,14 @@ import {
   CardDescription,
   CardTitle,
 } from "./ui/card";
+import { useRouter } from "next/navigation";
 
 const BlogCard = () => {
+  const router = useRouter();
   return (
-    <Card>
+    <Card
+      className="cursor-pointer hover:bg-gray-100 hover:dark:bg-gray-800"
+      onClick={() => router.push("/blog")}>
       <CardHeader>
         <CardTitle>Blogs</CardTitle>
         <CardDescription>
