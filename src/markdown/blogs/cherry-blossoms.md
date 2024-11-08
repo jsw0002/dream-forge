@@ -9,7 +9,7 @@ categories: ["Travel", "Culture"]
 series: "Seasons in Japan"
 image: "https://ik.imagekit.io/jsw0002/stories/cherry-blossoms_VtHYcrhvH"
 draft: false
-featured: true
+featured: false
 readingTime: 6
 metaTitle: "A Traveler's Guide to Japan's Cherry Blossom Season"
 metaDescription: "Discover the beauty of Japan's cherry blossom season with tips on top viewing spots, cultural insights, and how to make the most of sakura season."

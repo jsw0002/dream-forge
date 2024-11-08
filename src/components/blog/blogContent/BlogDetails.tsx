@@ -1,6 +1,6 @@
 import { BlogData } from "@/app/blog/actions";
 import { Calendar, User, Group, Watch } from "lucide-react";
-import CustomHoverCard from "../ui/hover-card";
+import CustomHoverCard from "../../ui/hover-card";
 import { formatDate } from "@/lib/formatDate";
 
 const BlogDetails = ({ data }: { data: BlogData }) => {

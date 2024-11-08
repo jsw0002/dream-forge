@@ -1,20 +1,18 @@
 "use client";
 
-import BlogDetails from "./BlogDetails";
-import BackToBlog from "./BackToBlog";
-import { BlogData, getBlog } from "@/app/blog/actions";
-import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { getBusinessPlan } from "@/app/business-plan/actions";
+import BackToButton from "@/components/ui/back-to-button";
 import ReactMarkdown from "react-markdown";
-import { useEffect, useRef } from "react";
-import { useState } from "react";
+import BusinessPlanHeader from "./BusinessPlanHeader";
 
-export default function BlogContent({
+const BusinessPlanContent = ({
   content,
 }: {
-  content: Awaited<ReturnType<typeof getBlog>>;
-}) {
-  const [showBottomLink, setShowBottomLink] = useState(false);
+  content: Awaited<ReturnType<typeof getBusinessPlan>>;
+}) => {
   const contentRef = useRef<HTMLDivElement>(null);
+  const [showBottomLink, setShowBottomLink] = useState(false);
 
   useEffect(() => {
     const checkScroll = () => {
@@ -31,15 +29,8 @@ export default function BlogContent({
 
   return (
     <div className="mt-10" ref={contentRef}>
-      <BackToBlog />
-      <Image
-        src={content.data.image}
-        alt={content.data.title || "Blog post image"}
-        width={1200}
-        height={630}
-        className="w-full max-h-[500px] object-cover mb-4"
-      />
-      <BlogDetails data={content.data as BlogData} />
+      <BackToButton href="/business-plan" label="business plan list" />
+      <BusinessPlanHeader data={content.data} />
       <ReactMarkdown
         components={{
           p: (props) => <p className="my-4" {...props} />,
@@ -51,9 +42,11 @@ export default function BlogContent({
       </ReactMarkdown>
       {showBottomLink && (
         <div className="mt-8">
-          <BackToBlog />
+          <BackToButton href="/business-plan" label="business plan list" />
         </div>
       )}
     </div>
   );
-}
+};
+
+export default BusinessPlanContent;

@@ -1,11 +1,8 @@
+import BlogContent from "@/components/blog/blogContent";
 import { getBlog } from "../actions";
-import BlogContent from "@/components/blogContent";
+import { TPageProps } from "@/types/page";
 
-type PageProps = {
-  params: Promise<{ slug: string }>;
-};
-
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: TPageProps) {
   const resolvedParams = await params;
   const blog = await getBlog(resolvedParams.slug);
   return {
@@ -26,7 +23,7 @@ export async function generateMetadata({ params }: PageProps) {
   };
 }
 
-export default async function Blog({ params }: PageProps) {
+export default async function Blog({ params }: TPageProps) {
   const resolvedParams = await params;
   const blog = await getBlog(resolvedParams.slug);
 
